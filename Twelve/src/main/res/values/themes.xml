@@ -8,12 +8,25 @@
     <style name="Theme.Twelve" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="android:enforceNavigationBarContrast">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="enableEdgeToEdge">true</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorContainer">@color/accentInverse</item>
+        <item name="colorOnContainer">@color/buttonIconColor</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimaryContainer">@color/accentSecondary</item>
+        <item name="colorSecondaryContainer">@color/accentInverse</item>
+        <item name="colorSurface">@color/colorPrimary</item>
+        <item name="colorSurfaceContainer">@color/toolbarCollapsed</item>
+        <item name="enableEdgeToEdge">true</item>dc
         <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
     </style>
 
     <!-- Base dialog theme -->
     <style name="BaseTheme.Twelve.Dialog" parent="Theme.Material3Expressive.Light.Dialog.Alert" />
+
+    <!-- Bottom Navigation Bar Active Indicator theme -->
+    <style name="Theme.Twelve.BottomNavbar.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bottomNavbarActiveColor</item>
+    </style>
 
     <!-- Dialog theme -->
     <style name="Theme.Twelve.Dialog" parent="BaseTheme.Twelve.Dialog">
@@ -66,7 +79,7 @@
         <item name="android:layout_width">72dp</item>
         <item name="android:layout_height">72dp</item>
         <item name="android:padding">0dp</item>
-        <item name="backgroundTint">?attr/colorTertiaryContainer</item>
+        <item name="backgroundTint">@color/colorTertiaryContainer</item>
         <item name="iconTint">?attr/colorOnTertiaryContainer</item>
         <item name="iconGravity">textStart</item>
         <item name="iconSize">36dp</item>
@@ -76,12 +89,14 @@
     </style>
 
     <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Standard" parent="Widget.Material3Expressive.Button.IconButton.Standard">
-        <item name="android:layout_width">48dp</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">0dp</item>
         <item name="iconGravity">textStart</item>
         <item name="iconSize">24dp</item>
+        <item name="backgroundTint">@color/colorTertiary</item>
+        <item name="iconTint">@color/colorTertiaryContainer</item>
     </style>
 
     <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Container" parent="">
@@ -95,17 +110,60 @@
         <item name="android:layout_gravity">bottom|center_horizontal</item>
         <item name="android:src">@drawable/now_playing_marker</item>
         <item name="android:visibility">gone</item>
-        <item name="tint">?attr/colorPrimary</item>
+        <item name="tint">@color/colorTertiaryContainer</item>
     </style>
 
-    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3Expressive.Button.IconButton.Tonal">
+    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3Expressive.Button.IconButton.Filled">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">0dp</item>
-        <item name="android:insetLeft">0dp</item>
-        <item name="android:insetRight">0dp</item>
+        <item name="android:insetLeft">4dp</item>
+        <item name="android:insetRight">4dp</item>
+        <item name="android:textColor">@color/buttonIconColor</item>
         <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="iconTint">@color/buttonIconColor</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Theme.Twelve.PreviewFragment.PrimaryButton" parent="Widget.Material3Expressive.Button.IconButton.Filled">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetLeft">4dp</item>
+        <item name="android:insetRight">4dp</item>
+        <item name="android:textColor">@color/buttonIconColor</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="backgroundTint">@color/accent</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Theme.Twelve.PreviewFragment.SecondaryButton" parent="Widget.Material3Expressive.Button.IconButton.Filled">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetLeft">4dp</item>
+        <item name="android:insetRight">4dp</item>
+        <item name="android:textColor">@color/buttonIconColor</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="iconTint">@color/buttonIconColor</item>
+        <item name="backgroundTint">@color/accentInverse</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Theme.Twelve.PreviewFragment.TertiaryButton" parent="Widget.Material3Expressive.Button.IconButton.Filled">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetLeft">4dp</item>
+        <item name="android:insetRight">4dp</item>
+        <item name="android:textColor">@color/colorTertiaryContainer</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="iconTint">@color/colorTertiaryContainer</item>
+        <item name="backgroundTint">@color/colorTertiary</item>
         <item name="iconGravity">textStart</item>
     </style>
 

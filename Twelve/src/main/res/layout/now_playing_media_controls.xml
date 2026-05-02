@@ -19,6 +19,7 @@
         <ImageView
             android:id="@+id/shuffleMarkerImageView"
             style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Marker"
+            android:paddingTop="3dp"
             android:importantForAccessibility="no" />
 
         <com.google.android.material.button.MaterialButton
@@ -74,12 +75,15 @@
         <ImageView
             android:id="@+id/repeatMarkerImageView"
             style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Marker"
-            android:importantForAccessibility="no" />
+            android:importantForAccessibility="no"
+            android:paddingTop="3dp"
+            android:elevation="1dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/repeatMaterialButton"
             style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Standard"
-            app:icon="@drawable/ic_repeat" />
+            app:icon="@drawable/ic_repeat"
+            android:elevation="0dp"/>
 
     </FrameLayout>
 

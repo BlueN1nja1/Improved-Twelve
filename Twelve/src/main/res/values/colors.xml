@@ -4,5 +4,21 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-
+        <color name="accent">#1a73e8</color>
+        <color name="accentInverse">#A9E0FF</color>
+        <color name="accentSecondary">#3b48f7</color>
+        <color name="bottomNavbarBackground">#e2ebf9</color>
+        <color name="bottomNavbarActiveColor">#1a73e8</color>
+        <color name="bottomNavbarIconActiveColor">#000000</color>
+        <color name="bottomNavbarIconInactiveColor">#000000</color>
+        <color name="buttonColor">#f2f2f2</color>
+        <color name="buttonIconColor">#003352</color>
+        <color name="cardColor">#ffffff</color>
+        <color name="colorPrimary">#ffffff</color>
+        <color name="colorTertiary">#938ce9</color>
+        <color name="colorTertiaryContainer">#20087F</color>
+        <color name="fabText">#002643</color>
+        <color name="headerTextColor">#ffffff</color>
+        <color name="text">#000000</color>
+        <color name="toolbarCollapsed">#c1daf4</color>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--
+      Using a theme attribute for the color makes sure it adapts to
+      light/dark mode correctly. colorPrimaryContainer is a good choice.
+    -->
+    <solid android:color="@color/accent" />
+
+    <!-- A large radius creates the "pill" effect. -->
+    <corners android:radius="100dp" />
+</shape>

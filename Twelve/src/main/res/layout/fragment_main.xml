@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -26,7 +25,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/settingsMaterialButton"
-                style="?attr/materialIconButtonFilledTonalStyle"
+                style="?attr/materialIconButtonFilledStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -37,7 +36,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/providerMaterialButton"
-                style="?attr/materialButtonTonalStyle"
+                style="?attr/materialButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -65,18 +64,22 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="@string/play_random_songs"
         android:text="@string/play_random_songs"
+        android:textColor="@color/colorTertiaryContainer"
         android:tooltipText="@string/play_random_songs"
         app:collapsedSize="46dp"
+        app:backgroundTint="@color/colorTertiary"
         app:icon="@drawable/ic_shuffle_play"
+        app:iconTint="@color/colorTertiaryContainer"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:layout_constraintBottom_toTopOf="@+id/navigationBarView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.TertiaryContainer" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationBarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/bottomNavbarBackground"
+        app:itemIconTint="@color/bottom_navbar_icon_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

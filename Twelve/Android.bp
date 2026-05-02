@@ -20,9 +20,9 @@ android_app {
     aaptflags: [
         // DO NOT EDIT THIS SECTION MANUALLY
         "--version-name",
-        "1.0",
+        "2.0.0",
         "--version-code",
-        "1",
+        "199",
     ],
 
     use_embedded_native_libs: true,
@@ -40,7 +40,7 @@ android_app {
         "androidx.room_room-compiler-plugin",
     ],
     javacflags: [
-        "-Aroom.schemaLocation=packages/apps/Twelve/app/schemas",
+        "-Aroom.schemaLocation=packages/apps/Twelve/Twelve/schemas",
     ],
 
     kotlin_plugins: [

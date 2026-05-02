@@ -6,12 +6,27 @@
 <resources>
     <!-- Settings activity theme. -->
     <style name="Theme.SettingsLib" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+        <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="android:listPreferredItemPaddingLeft">24dp</item>
         <item name="android:listPreferredItemPaddingStart">24dp</item>
-        <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorContainer">@color/accentInverse</item>
         <item name="materialAlertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
         <item name="preferenceTheme">@style/Theme.SettingsLib.PreferenceTheme</item>
+    </style>
+
+    <!-- Collapsing toolbar style -->
+    <style name="Theme.SettingsLib.ToolbarCollapsed" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Theme.SettingsLib.ToolbarExpanded" parent="Theme.SettingsLib.ToolbarCollapsed">
+        <item name="android:textSize">36sp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="colorContainer">@color/accentInverse</item>
     </style>
 
     <!-- Settings alert dialog theme. -->
@@ -26,7 +41,7 @@
         <item name="android:dividerHeight">0dp</item>
         <item name="android:listPreferredItemPaddingLeft">32dp</item>
         <item name="android:listPreferredItemPaddingStart">32dp</item>
-        <item name="android:tint">?attr/colorOnSurface</item>
+        <item name="android:tint">@color/bottomNavbarBackground</item>
         <item name="switchPreferenceCompatStyle">@style/Theme.SettingsLib.SwitchPreferenceCompat
         </item>
         <item name="switchPreferenceStyle">@style/Theme.SettingsLib.SwitchPreference</item>

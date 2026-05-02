@@ -6,9 +6,12 @@
 package org.lineageos.twelve.fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import androidx.activity.BackEventCompat
@@ -26,6 +29,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -65,7 +69,7 @@ import org.lineageos.twelve.viewmodels.MainViewModel
 /**
  * The home page.
  */
-class MainFragment : Fragment(R.layout.fragment_main) {
+class MainFragment : Fragment(R.layout.fragment_main), SharedPreferences.OnSharedPreferenceChangeListener {
     // View models
     private val viewModel by viewModels<MainViewModel>()
 
@@ -190,8 +194,23 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
+    private lateinit var sharedPreferences: SharedPreferences
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate your fragment's layout here
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+        return view
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        updateButtonVisibility()
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
 
         // Insets
         ViewCompat.setOnApplyWindowInsetsListener(toolbar) { v, windowInsets ->
@@ -451,8 +470,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         // Search
         searchRecyclerView.adapter = null
-
         super.onDestroyView()
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
     }
 
     companion object {
@@ -486,6 +505,21 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 is Genre -> oldItem.areContentsTheSame(newItem)
                 is Playlist -> oldItem.areContentsTheSame(newItem)
             }
+        }
+    }
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == "disable_cloud_providers") {
+            updateButtonVisibility()
+        }
+    }
+
+
+    private fun updateButtonVisibility() {
+        val disableCloudProviders = sharedPreferences.getBoolean("disable_cloud_providers", false)
+        if (disableCloudProviders) {
+            providerMaterialButton.visibility = MaterialButton.GONE
+        } else {
+            providerMaterialButton.visibility = MaterialButton.VISIBLE
         }
     }
 }

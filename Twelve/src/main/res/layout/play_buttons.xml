@@ -24,8 +24,9 @@
         android:tooltipText="@string/shuffle_play"
         android:visibility="gone"
         app:collapsedSize="46dp"
+        app:backgroundTint="@color/colorTertiary"
         app:icon="@drawable/ic_shuffle_play"
-        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.TertiaryContainer"
+        app:iconTint="@color/colorTertiaryContainer"
         tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -36,9 +37,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/play_all"
+        android:tooltipText="@string/play_all"
+        android:textColor="@color/fabText"
         android:visibility="gone"
+        app:backgroundTint="@color/accentInverse"
         app:icon="@drawable/ic_play_arrow"
-        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.PrimaryContainer"
+        app:iconTint="@color/fabText"
         tools:visibility="visible" />
 
 </LinearLayout>

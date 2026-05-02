@@ -6,14 +6,15 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="?attr/materialCardViewElevatedStyle"
+    style="?attr/materialCardViewFilledStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="26dp"
     app:contentPaddingBottom="16dp"
-    app:contentPaddingTop="16dp">
+    app:contentPaddingTop="16dp"
+    app:cardBackgroundColor="@color/cardColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:textAppearance="?attr/textAppearanceHeadlineLarge"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium"
             android:textColor="?attr/colorOnSurface"
             tools:text="Activity" />
 
@@ -33,7 +35,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="26dp"
             android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingHorizontal="12dp"

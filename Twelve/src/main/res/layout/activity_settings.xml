@@ -24,9 +24,10 @@
             android:layout_height="179dp"
             app:expandedTitleMarginBottom="31dp"
             app:expandedTitleMarginStart="24dp"
-            app:expandedTitleTextAppearance="?attr/textAppearanceDisplaySmall"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:titleCollapseMode="fade"
+            app:expandedTitleTextAppearance="@style/Theme.SettingsLib.ToolbarExpanded"
+            app:collapsedTitleTextAppearance="@style/Theme.SettingsLib.ToolbarCollapsed"            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:expandedTitleGravity="center|bottom"
+            app:titleCollapseMode="scale"
             app:toolbarId="@id/toolbar">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -40,8 +41,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/settings"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/settings_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

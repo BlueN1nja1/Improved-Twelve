@@ -4,24 +4,21 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-    <!-- Application theme -->
-    <style name="Theme.Twelve" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+    <!-- Settings activity theme. -->
+    <style name="Theme.SettingsLib" parent="Theme.Material3Expressive.DynamicColors.DayNight.NoActionBar">
+        <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
+        <item name="android:listPreferredItemPaddingLeft">24dp</item>
+        <item name="android:listPreferredItemPaddingStart">24dp</item>
         <item name="android:colorBackground">@color/colorPrimary</item>
-        <item name="android:enforceNavigationBarContrast">true</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorContainer">@color/accentInverse</item>
         <item name="colorOnContainer">@color/buttonIconColor</item>
         <item name="colorPrimary">@color/accent</item>
-        <item name="colorPrimaryContainer">@color/accentInverse</item>
+        <item name="colorPrimaryContainer">@color/accentSecondary</item>
         <item name="colorSecondaryContainer">@color/accentInverse</item>
         <item name="colorSurface">@color/colorPrimary</item>
-        <item name="colorSurfaceContainer">@color/toolbarCollapsed</item>
-        <item name="enableEdgeToEdge">true</item>
+        <item name="materialAlertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
-    </style>
-    <!-- App widget -->
-    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3Expressive.DynamicColors.DayNight">
-        <item name="appWidgetRadius">@android:dimen/system_app_widget_background_radius</item>
+        <item name="preferenceTheme">@style/Theme.SettingsLib.PreferenceTheme</item>
     </style>
 </resources>

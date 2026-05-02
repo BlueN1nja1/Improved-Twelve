@@ -197,6 +197,8 @@
     <string name="experimental_header">Experimental</string>
 
     <!-- General preferences -->
+    <string name="disable_cloud_providers">Disable Cloud Providers</string>
+    <string name="disable_cloud_providers_summary">Removes the cloud providers / device name button from the main page</string>
     <string name="fullscreen_mode">Fullscreen mode</string>
     <string name="fullscreen_mode_summary">Enable fullscreen mode. This will hide the navigation bar and status bar, but will still make sure that no touchable content overlaps with display cutouts</string>
     <string name="enable_offload">Enable offload</string>

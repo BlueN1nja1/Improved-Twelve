@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <color name="accent">#9DE0FF</color>
+    <color name="accentInverse">#376C97</color>
+    <color name="accentSecondary">#3b4857</color>
+    <color name="bottomNavbarBackground">#002742</color>
+    <color name="bottomNavbarActiveColor">#9DE0FF</color>
+    <color name="bottomNavbarIconActiveColor">#ffffff</color>
+    <color name="bottomNavbarIconInactiveColor">#ffffff</color>
+    <color name="buttonColor">#303030</color>
+    <color name="buttonIconColor">#003352</color>
+    <color name="cardColor">#252525</color>
+    <color name="colorTertiary">#766cd6</color>
+    <color name="colorTertiaryContainer">#ffffff</color>
+    <color name="fabText">#ffffff</color>
+    <color name="headerTextColor">#000000</color>
+    <color name="text">#ffffff</color>
+</resources>

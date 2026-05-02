@@ -25,6 +25,7 @@
         android:background="@drawable/bg_app_widget_round_view"
         android:backgroundTint="?attr/colorSecondaryContainer"
         android:clipToOutline="true"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/content_description_thumbnail"
         android:src="@drawable/ic_music_note"
         tools:targetApi="s" />
@@ -74,10 +75,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/widget_button_shape"
             android:contentDescription="@string/content_description_play_pause"
             android:src="@drawable/ic_play_arrow"
-            android:tint="?attr/colorOnSurface"
+            android:tint="@color/headerTextColor"
             tools:ignore="UseAppTint" />
 
     </FrameLayout>

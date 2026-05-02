@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A ripple drawable that masks the touch feedback to the shape of the card. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+
+    <!-- Mask for the ripple, this defines its shape. -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+            <corners android:radius="28dp" />
+        </shape>
+    </item>
+
+    <!-- The actual background color of the card. -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/cardColor" />
+            <corners android:radius="28dp"/>
+        </shape>
+    </item>
+
+</ripple>

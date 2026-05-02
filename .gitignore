@@ -8,3 +8,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+Twelve/release/Twelve-release.apk
+Twelve/release/baselineProfiles/1/Twelve-release.dm
+Twelve/release/baselineProfiles/0/Twelve-release.dm

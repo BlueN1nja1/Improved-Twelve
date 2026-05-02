@@ -17,7 +17,7 @@
         android:layout_height="128dp"
         android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="22dp">
 
         <ImageView
             android:id="@+id/placeholderImageView"
@@ -26,6 +26,7 @@
             android:background="?attr/colorPrimary"
             android:contentDescription="@string/content_description_thumbnail"
             android:padding="8dp"
+            android:scaleType="centerCrop"
             android:visibility="gone"
             app:tint="?attr/colorOnPrimary"
             tools:src="@drawable/ic_person"
@@ -35,6 +36,7 @@
             android:id="@+id/thumbnailImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/content_description_thumbnail" />
 
     </androidx.cardview.widget.CardView>

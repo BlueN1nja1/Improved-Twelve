@@ -11,7 +11,8 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="16dp">
+    android:paddingVertical="16dp"
+    android:background="@color/bottomNavbarBackground">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/thumbnailMaterialCardView"
@@ -24,6 +25,7 @@
             android:id="@+id/thumbnailImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/content_description_thumbnail" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -39,8 +41,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:singleLine="true"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textColor="?attr/colorOnSurface"
             tools:text="Tokyo Story" />
@@ -49,8 +53,10 @@
             android:id="@+id/artistNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:singleLine="true"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?attr/colorOnSurface"
             tools:text="Ryuichi Sakamoto" />
@@ -59,8 +65,10 @@
             android:id="@+id/albumTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:singleLine="true"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?attr/colorOnSurface"
             tools:text="Sweet Revenge" />
