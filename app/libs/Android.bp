@@ -7,7 +7,7 @@
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-common",
-    aars: ["androidx/media3/media3-common/1.9.3/media3-common-1.9.3.aar"],
+    aars: ["androidx/media3/media3-common/1.11.1/media3-common-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -23,7 +23,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-common-ktx",
-    aars: ["androidx/media3/media3-common-ktx/1.9.3/media3-common-ktx-1.9.3.aar"],
+    aars: ["androidx/media3/media3-common-ktx/1.11.1/media3-common-ktx-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -41,7 +41,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-container",
-    aars: ["androidx/media3/media3-container/1.9.3/media3-container-1.9.3.aar"],
+    aars: ["androidx/media3/media3-container/1.11.1/media3-container-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -56,7 +56,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-database",
-    aars: ["androidx/media3/media3-database/1.9.3/media3-database-1.9.3.aar"],
+    aars: ["androidx/media3/media3-database/1.11.1/media3-database-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -71,7 +71,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-datasource",
-    aars: ["androidx/media3/media3-datasource/1.9.3/media3-datasource-1.9.3.aar"],
+    aars: ["androidx/media3/media3-datasource/1.11.1/media3-datasource-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -88,7 +88,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-decoder",
-    aars: ["androidx/media3/media3-decoder/1.9.3/media3-decoder-1.9.3.aar"],
+    aars: ["androidx/media3/media3-decoder/1.11.1/media3-decoder-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -103,7 +103,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer",
-    aars: ["androidx/media3/media3-exoplayer/1.9.3/media3-exoplayer-1.9.3.aar"],
+    aars: ["androidx/media3/media3-exoplayer/1.11.1/media3-exoplayer-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -112,8 +112,6 @@ android_library_import {
     ],
     static_libs: [
         "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
         "androidx.exifinterface_exifinterface",
         "Twelve_androidx.media3_media3-common",
         "Twelve_androidx.media3_media3-container",
@@ -121,13 +119,12 @@ android_library_import {
         "Twelve_androidx.media3_media3-datasource",
         "Twelve_androidx.media3_media3-decoder",
         "Twelve_androidx.media3_media3-extractor",
-        "kotlin-stdlib",
     ],
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-hls",
-    aars: ["androidx/media3/media3-exoplayer-hls/1.9.3/media3-exoplayer-hls-1.9.3.aar"],
+    aars: ["androidx/media3/media3-exoplayer-hls/1.11.1/media3-exoplayer-hls-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -136,13 +133,14 @@ android_library_import {
     ],
     static_libs: [
         "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
         "Twelve_androidx.media3_media3-exoplayer",
     ],
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-midi",
-    aars: ["androidx/media3/media3-exoplayer-midi/1.9.3/media3-exoplayer-midi-1.9.3.aar"],
+    aars: ["androidx/media3/media3-exoplayer-midi/1.11.1/media3-exoplayer-midi-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -156,12 +154,13 @@ android_library_import {
         "Twelve_androidx.media3_media3-exoplayer",
         "Twelve_androidx.media3_media3-extractor",
         "Twelve_com.github.philburk_jsyn",
+        "kotlin-stdlib",
     ],
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-rtsp",
-    aars: ["androidx/media3/media3-exoplayer-rtsp/1.9.3/media3-exoplayer-rtsp-1.9.3.aar"],
+    aars: ["androidx/media3/media3-exoplayer-rtsp/1.11.1/media3-exoplayer-rtsp-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -176,7 +175,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-smoothstreaming",
-    aars: ["androidx/media3/media3-exoplayer-smoothstreaming/1.9.3/media3-exoplayer-smoothstreaming-1.9.3.aar"],
+    aars: ["androidx/media3/media3-exoplayer-smoothstreaming/1.11.1/media3-exoplayer-smoothstreaming-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -191,7 +190,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-extractor",
-    aars: ["androidx/media3/media3-extractor/1.9.3/media3-extractor-1.9.3.aar"],
+    aars: ["androidx/media3/media3-extractor/1.11.1/media3-extractor-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -208,7 +207,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-session",
-    aars: ["androidx/media3/media3-session/1.9.3/media3-session-1.9.3.aar"],
+    aars: ["androidx/media3/media3-session/1.11.1/media3-session-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -217,16 +216,19 @@ android_library_import {
     ],
     static_libs: [
         "androidx.collection_collection",
+        "androidx.concurrent_concurrent-futures",
         "androidx.core_core",
+        "androidx.lifecycle_lifecycle-service",
         "androidx.media_media",
         "Twelve_androidx.media3_media3-common",
         "Twelve_androidx.media3_media3-datasource",
+        "kotlin-stdlib",
     ],
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-ui",
-    aars: ["androidx/media3/media3-ui/1.9.3/media3-ui-1.9.3.aar"],
+    aars: ["androidx/media3/media3-ui/1.11.1/media3-ui-1.11.1.aar"],
     sdk_version: "36",
     min_sdk_version: "30",
     apex_available: [
@@ -237,6 +239,7 @@ android_library_import {
         "androidx.annotation_annotation",
         "Twelve_androidx.media3_media3-common",
         "androidx.recyclerview_recyclerview",
+        "kotlin-stdlib",
     ],
 }
 

@@ -48,30 +48,37 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/contentCoordinatorLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationBarView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/playRandomSongsExtendedFloatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="12dp"
-        android:contentDescription="@string/play_random_songs"
-        android:text="@string/play_random_songs"
-        android:tooltipText="@string/play_random_songs"
-        app:collapsedSize="46dp"
-        app:icon="@drawable/ic_shuffle_play"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBarView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.TertiaryContainer" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/playRandomSongsButton"
+            style="?attr/materialButtonTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/play_random_songs"
+            android:textColor="?attr/colorOnTertiaryContainer"
+            app:backgroundTint="?attr/colorTertiaryContainer"
+            app:icon="@drawable/ic_shuffle_play"
+            app:iconTint="?attr/colorOnTertiaryContainer"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:materialSizeOverlay="@style/SizeOverlay.Material3Expressive.Button.Medium" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationBarView"

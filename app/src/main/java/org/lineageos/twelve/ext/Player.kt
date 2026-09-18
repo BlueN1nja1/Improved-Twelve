@@ -5,12 +5,9 @@
 
 package org.lineageos.twelve.ext
 
-import androidx.annotation.OptIn
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
-import androidx.media3.common.TrackSelectionParameters
-import androidx.media3.common.util.UnstableApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
@@ -80,22 +77,23 @@ fun Player.tracksFlow(eventsFlow: Flow<Player.Events>) = eventsFlow
     .map { currentTracks }
     .onStart { emit(currentTracks) }
 
-private fun Player.mediaItemsShuffled() =
-    currentTimeline.getFirstWindowIndex(shuffleModeEnabled).takeIf {
-        it != C.INDEX_UNSET
-    }?.let { startIndex ->
-        var index = startIndex
-        buildList {
-            repeat(currentTimeline.windowCount) {
-                add(getMediaItemAt(index))
-                index = currentTimeline.getNextWindowIndex(
-                    index, Player.REPEAT_MODE_OFF, shuffleModeEnabled
-                )
-            }
-        }.let { items ->
-            items.indexOfFirst { getMediaItemAt(currentMediaItemIndex) == it } to items
+private fun Player.mediaItemsShuffled(): Pair<Int, List<MediaItem>> {
+    val timeline = currentTimeline
+    val startIndex = timeline.getFirstWindowIndex(shuffleModeEnabled)
+    if (startIndex == C.INDEX_UNSET) return currentMediaItemIndex to mediaItems
+
+    var index = startIndex
+    var currentPos = -1
+    val items = buildList {
+        repeat(timeline.windowCount) {
+            if (index == currentMediaItemIndex) currentPos = it
+            add(getMediaItemAt(index))
+            index = timeline.getNextWindowIndex(index, Player.REPEAT_MODE_OFF, shuffleModeEnabled)
         }
-    } ?: (currentMediaItemIndex to mediaItems)
+    }
+
+    return currentPos to items
+}
 
 private fun Player.createQueueItems() =
     mediaItemsShuffled().let { (currentIndex, mediaItems) ->
@@ -164,20 +162,3 @@ val Player.mediaItems: List<MediaItem>
     get() = (0 until mediaItemCount).map {
         getMediaItemAt(it)
     }
-
-@OptIn(UnstableApi::class)
-fun Player.setOffloadEnabled(enabled: Boolean) {
-    trackSelectionParameters = trackSelectionParameters.buildUpon()
-        .setAudioOffloadPreferences(
-            TrackSelectionParameters.AudioOffloadPreferences
-                .Builder()
-                .setAudioOffloadMode(
-                    if (enabled) {
-                        TrackSelectionParameters.AudioOffloadPreferences.AUDIO_OFFLOAD_MODE_ENABLED
-                    } else {
-                        TrackSelectionParameters.AudioOffloadPreferences.AUDIO_OFFLOAD_MODE_DISABLED
-                    }
-                )
-                .build()
-        ).build()
-}

@@ -16,4 +16,5 @@ data class ArtistWorks(
     val albums: List<Album>,
     val appearsInAlbum: List<Album>,
     val appearsInPlaylist: List<Playlist>,
+    val audios: List<Audio>,
 )

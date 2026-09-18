@@ -283,7 +283,9 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             flow {
                 while (true) {
                     val duration = mediaController.duration.takeIf { it != C.TIME_UNSET }
-                    emit(duration to duration?.let { mediaController.currentPosition })
+                    val currentPosition =
+                        mediaController.currentPosition.takeIf { duration != null }
+                    emit(duration to currentPosition)
                     delay(200)
                 }
             }

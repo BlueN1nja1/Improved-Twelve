@@ -35,13 +35,11 @@
     <plurals name="tracks_count">
         <item quantity="one">רצועה אחת</item>
         <item quantity="two">%d רצועות</item>
-        <item quantity="many">%d רצועות</item>
         <item quantity="other">%d רצועות</item>
     </plurals>
     <plurals name="tracks_duration">
         <item quantity="one">דקה אחת</item>
         <item quantity="two">%d דקות</item>
-        <item quantity="many">%d דקות</item>
         <item quantity="other">%d דקות</item>
     </plurals>
     <string name="artist_albums_header">אלבומים</string>
@@ -108,13 +106,11 @@
     <string name="audio_format_compression_lossless">ללא אובדן איכות</string>
     <string name="audio_format_compression_uncompressed">לא דחוס</string>
     <string name="audio_output_issue_downsampling">הפחתת קצב דגימה</string>
-    <string name="audio_output_issue_downsampling_description">היישום דוגם השמע בגלל שערוץ ההשמעה לא תומך בקצב דגימה זה
-היישום מפחית כעת את קצב הדגימה של האודיו מכיוון שהתקן הפלט אינו תומך בקצב הדגימה הרצוי.</string>
+    <string name="audio_output_issue_downsampling_description">היישום מבצע כעת תת דגימה לשמע, מכיוון שהתקן הפלט אינו תומך בקצב הדגימה המיועד.</string>
     <string name="audio_output_issue_pcm_float_mode_disabled">פלט נקודה צפה 32-סיביות מושבת</string>
     <string name="audio_output_issue_pcm_float_mode_disabled_description">איכות השמע עשויה להשתפר באמצעות מצב פלט בפורמט נקודה צפה 32-סיביות. ניתן להפעיל אותו מהגדרות היישום.</string>
     <string name="audio_output_issue_downmixing">מיזוג ערוצי שמע</string>
-    <string name="audio_output_issue_downmixing_description">היישום ממזג כעת ערוצי שמע, מאחר שהתקן הפלט אינו תומך במספר הערוצים הרצוי.
-</string>
+    <string name="audio_output_issue_downmixing_description">היישום ממזג כעת ערוצי שמע, מאחר שהתקן הפלט אינו תומך במספר הערוצים המיועד.</string>
     <string name="audio_output_issue_post_processing_lossy_compression">עיבוד מישני אל דחיסה מאבדת איכות</string>
     <string name="audio_output_issue_post_processing_lossy_compression_description">היישום דוחס את נתוני השמע באמצעות קידוד מאבד מידע. איכות השמע עשויה להיפגע.</string>
     <string name="provider_type_local">מקומי</string>
