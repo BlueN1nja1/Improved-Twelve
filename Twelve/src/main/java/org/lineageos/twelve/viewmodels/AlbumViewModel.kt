@@ -7,16 +7,19 @@ package org.lineageos.twelve.viewmodels
 
 import android.app.Application
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
+import org.lineageos.twelve.ext.mediaItemFlow
 import org.lineageos.twelve.ext.resources
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.FlowResult
@@ -74,7 +77,7 @@ class AlbumViewModel(application: Application) : TwelveViewModel(application) {
             override fun areContentsTheSame(other: AlbumContent) = true
         }
 
-        class AudioItem(val audio: Audio) : AlbumContent {
+        class AudioItem(val audio: Audio, val isCurrent: Boolean) : AlbumContent {
             override fun areItemsTheSame(other: AlbumContent) = AudioItem::class.safeCast(
                 other
             )?.let {
@@ -84,40 +87,57 @@ class AlbumViewModel(application: Application) : TwelveViewModel(application) {
             override fun areContentsTheSame(other: AlbumContent) = AudioItem::class.safeCast(
                 other
             )?.let {
-                audio.areContentsTheSame(it.audio)
+                audio.areContentsTheSame(it.audio) && isCurrent == it.isCurrent
             } ?: false
         }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val albumContent = tracks
-        .mapLatest {
-            val discToTracks = it.groupBy { audio ->
-                audio.discNumber
+    private val currentAudioUri = mediaControllerFlow
+        .flatMapLatest { it.mediaItemFlow(eventsFlow) }
+        .mapLatest { mediaItem ->
+            mediaItem?.let {
+                runCatching { it.mediaId.toUri() }.getOrNull()
             }
-
-            val hideHeaders = with(discToTracks.keys) {
-                size == 1 && firstOrNull() == 1
-            }
-
-            buildList {
-                discToTracks.keys.sortedBy { disc ->
-                    disc ?: 0
-                }.forEach { discNumber ->
-                    discNumber?.takeUnless { hideHeaders }?.let { i ->
-                        add(AlbumContent.DiscHeader(i))
-                    }
-
-                    discToTracks[discNumber]?.let { tracks ->
-                        addAll(
-                            tracks.map { audio ->
-                                AlbumContent.AudioItem(audio)
-                            }
-                        )
-                    }
-                }
-            }.toList()
         }
+        .flowOn(Dispatchers.Main)
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(),
+            null
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val albumContent = combine(tracks, currentAudioUri) { tracks, currentAudioUri ->
+        val discToTracks = tracks.groupBy { audio ->
+            audio.discNumber
+        }
+
+        val hideHeaders = with(discToTracks.keys) {
+            size == 1 && firstOrNull() == 1
+        }
+
+        buildList {
+            discToTracks.keys.sortedBy { disc ->
+                disc ?: 0
+            }.forEach { discNumber ->
+                discNumber?.takeUnless { hideHeaders }?.let { i ->
+                    add(AlbumContent.DiscHeader(i))
+                }
+
+                discToTracks[discNumber]?.let { tracks ->
+                    addAll(
+                        tracks.map { audio ->
+                            AlbumContent.AudioItem(
+                                audio = audio,
+                                isCurrent = audio.uri == currentAudioUri,
+                            )
+                        }
+                    )
+                }
+            }
+        }.toList()
+    }
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,

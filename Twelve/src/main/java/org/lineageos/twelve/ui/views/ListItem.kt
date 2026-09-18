@@ -52,6 +52,12 @@ class ListItem @JvmOverloads constructor(
             leadingIconImageView.setImageAndUpdateVisibility(value)
         }
 
+    var leadingIconImageIsActivated: Boolean
+        get() = leadingIconImageView.isActivated ?: false
+        set(value) {
+            leadingIconImageView?.isActivated = value
+        }
+
     var leadingText: CharSequence?
         get() = leadingTextView.text
         set(value) {
@@ -74,6 +80,12 @@ class ListItem @JvmOverloads constructor(
         get() = headlineTextView.text
         set(value) {
             headlineTextView.setTextAndUpdateVisibility(value)
+        }
+
+    var headlineTextIsActivated: Boolean
+        get() = headlineTextView.isActivated
+        set(value) {
+            headlineTextView.isActivated = value
         }
 
     var supportingText: CharSequence?

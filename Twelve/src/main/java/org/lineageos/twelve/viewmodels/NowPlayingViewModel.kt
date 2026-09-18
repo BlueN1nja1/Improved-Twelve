@@ -43,7 +43,6 @@ import org.lineageos.twelve.ext.mediaItemFlow
 import org.lineageos.twelve.ext.mediaMetadataFlow
 import org.lineageos.twelve.ext.next
 import org.lineageos.twelve.ext.playbackParametersFlow
-import org.lineageos.twelve.ext.playbackProgressFlow
 import org.lineageos.twelve.ext.playbackStateFlow
 import org.lineageos.twelve.ext.repeatModeFlow
 import org.lineageos.twelve.ext.shuffleModeFlow
@@ -54,7 +53,6 @@ import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.flatMapLatestData
 import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
-import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.Result
@@ -295,16 +293,6 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = null to null
-        )
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val playbackProgress = mediaControllerFlow
-        .flatMapLatest { it.playbackProgressFlow(eventsFlow) }
-        .flowOn(Dispatchers.Main)
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
-            initialValue = PlaybackProgress.EMPTY
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)

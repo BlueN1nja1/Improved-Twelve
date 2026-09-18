@@ -9,7 +9,7 @@
     style="?attr/materialCardViewFilledStyle"
     android:layout_width="24dp"
     android:layout_height="24dp"
-    app:cardBackgroundColor="?attr/colorPrimaryContainer"
+    app:cardBackgroundColor="?attr/colorSurfaceContainer"
     app:cardCornerRadius="4dp">
 
     <TextView
@@ -19,7 +19,7 @@
         android:gravity="center"
         android:textAlignment="gravity"
         android:textAppearance="?attr/textAppearanceLabelMedium"
-        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textColor="?attr/colorSecondary"
         tools:text="99" />
 
 </com.google.android.material.card.MaterialCardView>

@@ -449,7 +449,7 @@ class AmpacheDataSource(
         client.searchGroup(
             "or",
             listOf(
-                Triple("name", 0, "$query*"),
+                Triple("name", 0, "%$query%*"),
             ),
             type = "all",
             limit = 10,

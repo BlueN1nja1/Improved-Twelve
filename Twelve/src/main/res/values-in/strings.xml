@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Musik</string>
     <string name="app_permissions_toast">Izin tidak diberikan oleh pengguna</string>
     <string name="main_fragment_section_activity">Aktivitas</string>
+    <string name="main_fragment_section_search">Telusuri</string>
     <string name="main_fragment_section_library">Pustaka</string>
     <string name="library_fragment_menu_albums">Album</string>
     <string name="library_fragment_menu_artists">Artis</string>
@@ -23,23 +24,58 @@
         <item quantity="other">%d menit</item>
     </plurals>
     <string name="artist_albums_header">Album</string>
+    <string name="audio_play_next">Putar selanjutnya</string>
+    <string name="audio_remove_from_playlist">Hapus dari daftar putar</string>
+    <string name="open_album">Buka album</string>
+    <string name="open_genre">Buka genre</string>
+    <string name="rename_playlist">Ubah nama daftar putar</string>
+    <string name="rename_playlist_positive">Ubah nama</string>
+    <string name="delete_playlist">Hapus daftar putar</string>
+    <string name="delete_playlist_message">Apakah Anda yakin ingin menghapus daftar putar ini?</string>
+    <string name="audio_information">Informasi audio</string>
+    <string name="audio_effects">Efek audio</string>
+    <string name="playback_speed">Kecepatan pemutaran</string>
+    <string name="playback_speed_format">%1$sx</string>
+    <string name="audio_source">Sumber</string>
+    <string name="audio_file_type">Jenis file</string>
+    <string name="audio_format_compression">Kompresi</string>
+    <string name="audio_sample_rate_format">%1$s kHz</string>
+    <string name="audio_output_device_name">Nama</string>
+    <string name="audio_output_device_type_builtin">Bawaan</string>
+    <string name="audio_output_device_type_headphones">Headphone</string>
+    <string name="audio_output_device_type_external_speakers">Speaker eksternal</string>
     <string name="audio_output_device_type_usb">USB</string>
     <string name="provider_type_local">Lokal</string>
     <string name="provider_argument_server">Server</string>
+    <string name="add_provider_action">Tambah</string>
+    <string name="manage_provider">Kelola penyedia</string>
     <string name="save_provider_action">Simpan</string>
     <string name="delete_provider_action">Hapus</string>
     <string name="provider_name">Nama</string>
     <string name="provider_name_error">Masukkan nama</string>
+    <string name="argument_validation_error_title">Kesalahan</string>
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Pengaturan</string>
     <string name="general_header">Umum</string>
     <string name="experimental_header">Eksperimental</string>
+    <string name="fullscreen_mode">Mode layar penuh</string>
+    <string name="reset_local_stats_confirm_positive">Atur ulang</string>
     <string name="rescan_media_store_confirm_positive">Pindai ulang</string>
     <string name="split_local_devices">Pisahkan perangkat lokal</string>
+    <string name="now_playing_widget_description">Sedang diputar</string>
     <string name="now_playing_widget_dummy_title">Judul</string>
     <string name="now_playing_widget_dummy_artist">Artis</string>
+    <string name="genre_audios_header">Audio</string>
+    <string name="sort_by_artist_name">Nama artis</string>
+    <string name="sort_by_last_modified">Terakhir diubah</string>
+    <string name="sort_by_last_activity">Aktifitas terakhir</string>
+    <string name="sort_by_name">Nama</string>
+    <string name="sort_by_release_date">Tanggal rilis</string>
     <string name="sort_by_title">Judul</string>
     <string name="sort_by_unknown">Tidak dikenal</string>
+    <string name="activity_most_played_songs">Lagu paling sering diputar</string>
+    <string name="activity_random_playlists">Daftar putar acak</string>
+    <string name="activity_random_songs">Lagu acak</string>
     <string name="content_description_play_pause">Putar/jeda</string>
     <string name="content_description_thumbnail">Thumbnail</string>
     <string name="play_all">Putar semua</string>
@@ -62,6 +98,7 @@
     <string name="jellyfin_operating_system">Sistem operasi</string>
     <string name="ampache_server">Server</string>
     <string name="ampache_version">Versi</string>
+    <string name="ampache_compatible">Kompatibel</string>
     <string name="playlist_name">Nama</string>
     <string name="provider">Penyedia</string>
     <string name="repeat_all">Ulangi semua</string>

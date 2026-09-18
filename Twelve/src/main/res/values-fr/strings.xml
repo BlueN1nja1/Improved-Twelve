@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -138,6 +138,7 @@
     <string name="general_header">Général</string>
     <string name="experimental_header">Expérimental</string>
     <string name="fullscreen_mode">Mode plein écran</string>
+    <string name="fullscreen_mode_summary">Active le mode plein écran. Cela masquera la barre de navigation et la barre d\'état, mais garantira qu\'aucun élément interactif ne chevauche les découpes de l\'écran.</string>
     <string name="enable_offload">Activer le déchargement</string>
     <string name="enable_offload_summary">Utiliser le chemin de déchargement audio pour la lecture audio. Désactiver ceci peut augmenter la consommation d\'énergie, mais peut être utile si vous rencontrez des problèmes avec la lecture audio ou le post-traitement</string>
     <string name="enable_float_output">Activer la sortie en virgule flottante 32 bits</string>
@@ -176,6 +177,7 @@
     <string name="sort_by_title">Titre</string>
     <string name="sort_by_unknown">Inconnu</string>
     <string name="activity_most_played_albums">Albums les plus joués</string>
+    <string name="activity_most_played_songs">Sons les plus jouées</string>
     <string name="activity_random_albums">Albums aléatoires</string>
     <string name="activity_random_artists">Artistes aléatoires</string>
     <string name="activity_random_genres">Styles aléatoires</string>
@@ -209,6 +211,7 @@
     <string name="jellyfin_operating_system">Système d\'exploitation</string>
     <string name="ampache_server">Serveur</string>
     <string name="ampache_version">Version</string>
+    <string name="ampache_compatible">Compatible</string>
     <string name="playlist_name">Nom</string>
     <string name="provider">Fournisseur</string>
     <string name="create_playlist_error_empty_name">Aucun nom spécifié</string>

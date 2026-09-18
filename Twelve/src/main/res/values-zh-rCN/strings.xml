@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -63,7 +63,7 @@
     <string name="visualizer">可视化</string>
     <string name="audio_potential_issues">潜在问题</string>
     <string name="audio_source">来源</string>
-    <string name="audio_transcoding">转码中</string>
+    <string name="audio_transcoding">转码</string>
     <string name="audio_output">输出</string>
     <string name="audio_file_type">文件类型</string>
     <string name="audio_file_type_unknown">未知</string>
@@ -73,7 +73,7 @@
     <string name="audio_sample_rate_unknown">未知</string>
     <string name="audio_channel_count">声道数</string>
     <string name="audio_channel_count_unknown">未知</string>
-    <string name="audio_encoding">编码中</string>
+    <string name="audio_encoding">编码</string>
     <string name="audio_encoding_unknown">未知</string>
     <string name="audio_output_mode">输出模式</string>
     <string name="audio_output_mode_unknown">未知</string>

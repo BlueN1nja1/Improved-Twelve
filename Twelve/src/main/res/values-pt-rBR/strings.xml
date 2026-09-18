@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -211,6 +211,7 @@
     <string name="jellyfin_operating_system">Sistema operacional</string>
     <string name="ampache_server">Servidor</string>
     <string name="ampache_version">Versão</string>
+    <string name="ampache_compatible">Compatível</string>
     <string name="playlist_name">Nome</string>
     <string name="provider">Provedor</string>
     <string name="create_playlist_error_empty_name">Nenhum nome especificado</string>

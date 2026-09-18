@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -63,7 +63,8 @@
     <string name="playback_pitch_unlock">Desbloca el canvi de to</string>
     <string name="playback_warning">És possible que la velocitat i el to no funcionin correctament mentre la funció de baixada de reproducció està activada. Proveu de canviar-lo a la configuració de l\'aplicació.</string>
     <string name="visualizer">Visualitzador</string>
-    <string name="audio_potential_issues">Problemes potencials</string>
+    <string name="audio_potential_issues">Problemes potencials
+</string>
     <string name="audio_source">Font</string>
     <string name="audio_transcoding">Transcodificant</string>
     <string name="audio_output">Sortida</string>
@@ -104,9 +105,12 @@
     <string name="audio_format_compression_lossless">Sense pèrdues</string>
     <string name="audio_format_compression_uncompressed">Sense comprimir</string>
     <string name="audio_output_issue_downsampling">Reducció de mostreig</string>
-    <string name="audio_output_issue_downsampling_description">L\'aplicació està reduint el mostreig de l\'àudio a causa que el dispositiu de sortida no admet la freqüència de mostreig de destinació</string>
-    <string name="audio_output_issue_pcm_float_mode_disabled">La sortida de coma flotant de 32 bits està desactivada</string>
-    <string name="audio_output_issue_pcm_float_mode_disabled_description">La qualitat de l\'àudio pot beneficiar-se del mode de sortida de coma flotant de 32 bits. Podeu activar-lo des de la configuració de l\'aplicació</string>
+    <string name="audio_output_issue_downsampling_description">L\'aplicació està reduint el mostreig de l\'àudio a causa que el dispositiu de sortida no admet la freqüència de mostreig de destinació
+</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled">La sortida de coma flotant de 32 bits està desactivada
+</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled_description">La qualitat de l\'àudio pot beneficiar-se del mode de sortida de coma flotant de 32 bits. Podeu activar-lo des de la configuració de l\'aplicació
+</string>
     <string name="audio_output_issue_downmixing">Mescla a la baixa</string>
     <string name="audio_output_issue_downmixing_description">L\'aplicació està reduint la mescla de l\'àudio perquè el dispositiu de sortida no admet el recompte de canals de destinació</string>
     <string name="audio_output_issue_post_processing_lossy_compression">Compressió amb pèrdua després del processament</string>
@@ -132,7 +136,8 @@
     <string name="provider_type">Tipus de proveïdor</string>
     <string name="provider_type_error">Seleccioneu un tipus de proveïdor</string>
     <string name="argument_validation_error_title">Error</string>
-    <string name="argument_validation_error_message">Error en analitzar els arguments següents:\n%1$s</string>
+    <string name="argument_validation_error_message">Error en analitzar els arguments següents:\n%1$s
+</string>
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Configuració</string>
     <string name="general_header">General</string>

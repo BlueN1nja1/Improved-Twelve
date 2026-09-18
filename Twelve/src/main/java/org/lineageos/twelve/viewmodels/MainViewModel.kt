@@ -48,7 +48,7 @@ class MainViewModel(application: Application) : TwelveViewModel(application) {
         }
         .flatMapLatest { query ->
             query.trim().takeIf { it.isNotEmpty() }?.let {
-                mediaRepository.search("%${it}%")
+                mediaRepository.search(it)
             } ?: flowOf(Result.Success(listOf()))
         }
         .asFlowResult()

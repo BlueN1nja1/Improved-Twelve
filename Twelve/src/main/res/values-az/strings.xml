@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -66,7 +66,7 @@
     <string name="audio_potential_issues">Potensial problemlər</string>
     <string name="audio_source">Mənbə</string>
     <string name="audio_transcoding">Transcoding</string>
-    <string name="audio_output">Çıxış</string>
+    <string name="audio_output">Çıxac</string>
     <string name="audio_file_type">Fayl növü</string>
     <string name="audio_file_type_unknown">Bilinmir</string>
     <string name="audio_format_compression">Sıxışdırma</string>
@@ -105,7 +105,7 @@
     <string name="audio_format_compression_uncompressed">Sıxışdırılmamış</string>
     <string name="audio_output_issue_downsampling">Nümunə tezliyi azaltma</string>
     <string name="audio_output_issue_downsampling_description">Çıxış cihazı, hədəf nümunə tezliyini dəstəkləmədiyi üçün tətbiq hazırda səsi aşağı tezliyə çevirir.</string>
-    <string name="audio_output_issue_pcm_float_mode_disabled">32-bit üzən nöqtəli çıxış sıradan çıxarılıb</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled">32-bit üzən nöqtəli çıxac sıradan çıxarılıb</string>
     <string name="audio_output_issue_pcm_float_mode_disabled_description">Səs keyfiyyəti 32-bit üzən nöqtəli çıxış rejimindən faydalana bilər. Bu funksiyanı tətbiqin ayarlarından fəallaşdıra bilərsiniz</string>
     <string name="audio_output_issue_downmixing">Kanal birləşdirmə</string>
     <string name="audio_output_issue_downmixing_description">Çıxış cihazı, hədəf kanal sayını dəstəkləmədiyi üçün tətbiq hazırda səsi kanal birləşdirmə ilə emal edir</string>
@@ -141,8 +141,8 @@
     <string name="fullscreen_mode_summary">Tam ekran rejimini fəallaşdır. Bu, naviqasiya çubuğunu və status çubuğunu gizlədəcək, lakin toxunula bilən məzmunun ekran kəsikləri ilə üst-üstə düşməməsini təmin edəcək.</string>
     <string name="enable_offload">Offload-ı fəallaşdır</string>
     <string name="enable_offload_summary">Səs oxutma üçün offload audio path-ını istifadə edin. Bunu sıradan çıxartmaq, enerji istifadəsini artıra bilər, ancaq səs oxutma və ya son proseslə bağlı problemlə üzləşdikdə faydalı ola bilər</string>
-    <string name="enable_float_output">32-bit üzən nöqtə çıxışını fəallaşdır</string>
-    <string name="enable_float_output_summary">Səs keyfiyyətindən faydalanmaq mümkün olduqda 32-bit PCM floating point output-u istifadə et. Sürət və ucalıq kontrolları kimi səs effektləri bu rejimdə çalışmağı dayandıracaq. Bu seçimi açmaq, tətbiqin yenidən başladılmasını tələb edir</string>
+    <string name="enable_float_output">32-bit üzən nöqtə çıxacı fəallaşdır</string>
+    <string name="enable_float_output_summary">Səs keyfiyyətindən faydalanmaq mümkün olduqda 32-bit PCM üzən nöqtə çıxacını istifadə et. Sürət və ucalıq kontrolları kimi səs effektləri bu rejimdə çalışmağı dayandıracaq. Bu seçimi açmaq, tətbiqin yenidən başladılmasını tələb edir</string>
     <string name="stop_playback_on_task_removed">Tətbiq sonunculardan silindikdə oxutmanı dayandır</string>
     <string name="stop_playback_on_task_removed_summary">Tətbiq son tətbiqlərdən təmizləndikdə oxutmanı dayandır</string>
     <string name="skip_silence">Səssizliyi ötür</string>

@@ -5,7 +5,6 @@
 
 package org.lineageos.twelve.fragments
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.PixelFormat
 import android.icu.text.DecimalFormat
@@ -15,7 +14,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
 import android.view.View
-import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -105,7 +103,6 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
     // Progress slider state
     private var isProgressSliderDragging = false
-    private var animator: ValueAnimator? = null
 
     // AudioFX
     private val audioEffectsStartForResult =
@@ -200,7 +197,6 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
             object : Slider.OnSliderTouchListener {
                 override fun onStartTrackingTouch(slider: Slider) {
                     isProgressSliderDragging = true
-                    animator?.cancel()
                 }
 
                 override fun onStopTrackingTouch(slider: Slider) {
@@ -468,49 +464,21 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                 }
 
                 launch {
-                    viewModel.playbackProgress.collectLatest { playbackProgress ->
-                        // Stop the old animator, we'll make a new one anyway
-                        animator?.cancel()
-                        animator = null
-
-                        val durationMs = playbackProgress.durationMs ?: 0L
-                        val currentPositionMs = playbackProgress.currentPositionMs ?: 0L
+                    viewModel.durationCurrentPositionMs.collectLatest {
+                        val durationMs = it.first ?: 0L
+                        val currentPositionMs = it.second ?: 0L
 
                         val newValueTo = durationMs.toFloat().takeIf { it > 0 } ?: 1f
                         val newValue = currentPositionMs.toFloat()
 
                         progressSlider.valueTo = newValueTo
 
-                        if (!playbackProgress.isPlaying) {
-                            // We don't need animation, just update to the current values
+                        if (!isProgressSliderDragging) {
                             progressSlider.value = newValue
-
-                            currentTimestampTextView.text =
-                                TimestampFormatter.formatTimestampMillis(currentPositionMs)
-                        } else {
-                            ValueAnimator.ofFloat(newValue, newValueTo).apply {
-                                interpolator = LinearInterpolator()
-                                duration = (newValueTo - newValue).toLong()
-                                    .div(playbackProgress.playbackSpeed.roundToLong())
-                                addUpdateListener {
-                                    val value = it.animatedValue as Float
-
-                                    if (!isProgressSliderDragging) {
-                                        progressSlider.value = value
-                                    }
-
-                                    currentTimestampTextView.text =
-                                        TimestampFormatter.formatTimestampMillis(value)
-                                }
-                            }.also {
-                                animator = it
-                                it.start()
-                            }
                         }
 
-                        durationTimestampTextView.text = TimestampFormatter.formatTimestampMillis(
-                            durationMs
-                        )
+                        currentTimestampTextView.text =
+                            TimestampFormatter.formatTimestampMillis(currentPositionMs)
                     }
                 }
 
@@ -633,9 +601,6 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     }
 
     override fun onDestroyView() {
-        animator?.cancel()
-        animator = null
-
         if (isVisualizerStarted) {
             visualizerManager.stop()
         }

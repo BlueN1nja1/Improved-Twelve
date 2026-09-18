@@ -19,8 +19,12 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
@@ -40,10 +44,10 @@ import org.lineageos.twelve.ext.toThumbnail
 import org.lineageos.twelve.ext.typedRepeatMode
 import org.lineageos.twelve.models.Error
 import org.lineageos.twelve.models.FlowResult
-import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.services.TwelveRenderersFactory
+import kotlin.ranges.coerceAtMost
 
 /**
  * A view model useful to playback stuff locally (not in the playback service).
@@ -148,14 +152,6 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
             initialValue = FlowResult.Loading
         )
 
-    val playbackProgress = exoPlayer.playbackProgressFlow(eventsFlow)
-        .flowOn(Dispatchers.Main)
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
-            initialValue = PlaybackProgress.EMPTY
-        )
-
     val playbackParameters = exoPlayer.playbackParametersFlow(eventsFlow)
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -170,6 +166,27 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = Player.Commands.EMPTY
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val durationCurrentPositionMs = exoPlayer.playbackProgressFlow(eventsFlow)
+        .flatMapLatest {
+            flow {
+                while (true) {
+                    val duration = exoPlayer.duration.takeIf { it != C.TIME_UNSET }
+                    val currentPosition =
+                        exoPlayer.currentPosition.takeIf { exoPlayer.duration != C.TIME_UNSET }
+                            ?.coerceAtMost(exoPlayer.duration)
+                    emit(duration to duration?.let { currentPosition })
+                    delay(200)
+                }
+            }
+        }
+        .flowOn(Dispatchers.Main)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = null to null
         )
 
     override fun onCleared() {

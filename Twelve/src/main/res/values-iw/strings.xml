@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -113,7 +113,8 @@
     <string name="audio_output_issue_pcm_float_mode_disabled">פלט נקודה צפה 32-סיביות מושבת</string>
     <string name="audio_output_issue_pcm_float_mode_disabled_description">איכות השמע עשויה להשתפר באמצעות מצב פלט בפורמט נקודה צפה 32-סיביות. ניתן להפעיל אותו מהגדרות היישום.</string>
     <string name="audio_output_issue_downmixing">מיזוג ערוצי שמע</string>
-    <string name="audio_output_issue_downmixing_description">היישום ממזג כעת ערוצי שמע, מאחר שהתקן הפלט אינו תומך במספר הערוצים הרצוי.</string>
+    <string name="audio_output_issue_downmixing_description">היישום ממזג כעת ערוצי שמע, מאחר שהתקן הפלט אינו תומך במספר הערוצים הרצוי.
+</string>
     <string name="audio_output_issue_post_processing_lossy_compression">עיבוד מישני אל דחיסה מאבדת איכות</string>
     <string name="audio_output_issue_post_processing_lossy_compression_description">היישום דוחס את נתוני השמע באמצעות קידוד מאבד מידע. איכות השמע עשויה להיפגע.</string>
     <string name="provider_type_local">מקומי</string>

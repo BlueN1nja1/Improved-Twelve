@@ -5,14 +5,12 @@
 
 package org.lineageos.twelve
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.icu.text.DecimalFormat
 import android.icu.text.DecimalFormatSymbols
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -66,7 +64,6 @@ class ViewActivity : AppCompatActivity(R.layout.activity_view) {
 
     // Progress slider state
     private var isProgressSliderDragging = false
-    private var animator: ValueAnimator? = null
 
     // Intents
     private val intentListener = Consumer<Intent> { intentsViewModel.onIntent(it) }
@@ -87,7 +84,6 @@ class ViewActivity : AppCompatActivity(R.layout.activity_view) {
             object : Slider.OnSliderTouchListener {
                 override fun onStartTrackingTouch(slider: Slider) {
                     isProgressSliderDragging = true
-                    animator?.cancel()
                 }
 
                 override fun onStopTrackingTouch(slider: Slider) {
@@ -199,49 +195,21 @@ class ViewActivity : AppCompatActivity(R.layout.activity_view) {
                 }
 
                 launch {
-                    localPlayerViewModel.playbackProgress.collectLatest { playbackProgress ->
-                        // Stop the old animator, we'll make a new one anyway
-                        animator?.cancel()
-                        animator = null
-
-                        val durationMs = playbackProgress.durationMs ?: 0L
-                        val currentPositionMs = playbackProgress.currentPositionMs ?: 0L
+                    localPlayerViewModel.durationCurrentPositionMs.collectLatest {
+                        val durationMs = it.first ?: 0L
+                        val currentPositionMs = it.second ?: 0L
 
                         val newValueTo = durationMs.toFloat().takeIf { it > 0 } ?: 1f
                         val newValue = currentPositionMs.toFloat()
 
                         progressSlider.valueTo = newValueTo
 
-                        if (!playbackProgress.isPlaying) {
-                            // We don't need animation, just update to the current values
+                        if (!isProgressSliderDragging) {
                             progressSlider.value = newValue
-
-                            currentTimestampTextView.text =
-                                TimestampFormatter.formatTimestampMillis(currentPositionMs)
-                        } else {
-                            ValueAnimator.ofFloat(newValue, newValueTo).apply {
-                                interpolator = LinearInterpolator()
-                                duration = (newValueTo - newValue).toLong()
-                                    .div(playbackProgress.playbackSpeed.roundToLong())
-                                addUpdateListener {
-                                    val value = it.animatedValue as Float
-
-                                    if (!isProgressSliderDragging) {
-                                        progressSlider.value = value
-                                    }
-
-                                    currentTimestampTextView.text =
-                                        TimestampFormatter.formatTimestampMillis(value)
-                                }
-                            }.also {
-                                animator = it
-                                it.start()
-                            }
                         }
 
-                        durationTimestampTextView.text = TimestampFormatter.formatTimestampMillis(
-                            durationMs
-                        )
+                        currentTimestampTextView.text =
+                            TimestampFormatter.formatTimestampMillis(currentPositionMs)
                     }
                 }
 

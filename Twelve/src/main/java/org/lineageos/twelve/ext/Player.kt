@@ -120,10 +120,6 @@ fun Player.queueFlow(eventsFlow: Flow<Player.Events>) = eventsFlow
 
 private fun Player.createPlaybackProgress() = PlaybackProgress(
     isPlaying = isPlaying,
-    durationMs = duration.takeIf { it != C.TIME_UNSET },
-    currentPositionMs = currentPosition
-        .takeIf { duration != C.TIME_UNSET }
-        ?.coerceAtMost(duration),
     playbackSpeed = playbackParameters.speed,
 )
 

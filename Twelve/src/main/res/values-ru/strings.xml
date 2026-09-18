@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -144,7 +144,7 @@
     <string name="fullscreen_mode">Полноэкранный режим</string>
     <string name="fullscreen_mode_summary">Включить полноэкранный режим. Это скроет панель навигации и строку состояния, но все равно позволит избежать наложения сенсорного содержимого на вырезы дисплея</string>
     <string name="enable_offload">Включить разгрузку</string>
-    <string name="enable_offload_summary">Для воспроизведения звука используйте разгрузку аудио. Отключение этого параметра может привести к увеличению энергопотребления, но может оказаться полезным, если у вас возникнут проблемы с воспроизведением звука или последующей обработкой</string>
+    <string name="enable_offload_summary">Для воспроизведения звука используйте разгрузочный аудиотракт. Отключение этой функции может увеличить энергопотребление, но может быть полезно, если у вас возникли проблемы с воспроизведением или постобработкой аудио.</string>
     <string name="enable_float_output">Включить 32-битный вывод с плавающей точкой</string>
     <string name="enable_float_output_summary">Используйте 32-битный PCM-выход с плавающей точкой, если качество звука может от этого выиграть. В этом режиме перестанут работать такие аудиоэффекты, как регуляторы скорости и высоты тона. Переключение этой опции требует перезапуска приложения</string>
     <string name="stop_playback_on_task_removed">Остановить воспроизведение при удалении недавних приложений</string>
@@ -215,6 +215,7 @@
     <string name="jellyfin_operating_system">Операционная система</string>
     <string name="ampache_server">Сервер</string>
     <string name="ampache_version">Версия</string>
+    <string name="ampache_compatible">Совместимо</string>
     <string name="playlist_name">Название</string>
     <string name="provider">Поставщик</string>
     <string name="create_playlist_error_empty_name">Название не указано</string>

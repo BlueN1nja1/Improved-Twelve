@@ -974,19 +974,19 @@ class SubsonicClient(
      *
      * @since 1.5.0
      * @param ids A string which uniquely identifies the file to scrobble.
-     * @param time (Since 1.8.0) The time (in milliseconds since 1 Jan 1970) at which the song was
+     * @param times (Since 1.8.0) The time (in milliseconds since 1 Jan 1970) at which the song was
      *   listened to.
      * @param submission Whether this is a "submission" or a "now playing" notification.
      */
     suspend fun scrobble(
         ids: List<String>,
-        time: Long? = null,
+        times: List<Long>? = null,
         submission: Boolean? = null,
     ) = ApiRequest.get<ResponseRoot>(
         listOf("scrobble"),
         queryParameters = listOf(
             *ids.map { "id" to it }.toTypedArray(),
-            "time" to time,
+            *times?.map { "time" to it }?.toTypedArray().orEmpty(),
             "submission" to submission,
         )
     ).execute(api).mapResponse { }
