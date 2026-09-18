@@ -44,7 +44,7 @@ object OutputConfigurationUtils {
         MimeTypes.AUDIO_DTS to OutputConfiguration.Compression.LOSSY,
         MimeTypes.AUDIO_DTS_HD to OutputConfiguration.Compression.LOSSY,
         MimeTypes.AUDIO_DTS_EXPRESS to OutputConfiguration.Compression.LOSSY,
-        MimeTypes.AUDIO_DTS_X to OutputConfiguration.Compression.LOSSY,
+        MimeTypes.AUDIO_DTS_UHD_P2 to OutputConfiguration.Compression.LOSSY,
         MimeTypes.AUDIO_VORBIS to OutputConfiguration.Compression.LOSSY,
         MimeTypes.AUDIO_OPUS to OutputConfiguration.Compression.LOSSY,
         MimeTypes.AUDIO_AMR to OutputConfiguration.Compression.LOSSY,

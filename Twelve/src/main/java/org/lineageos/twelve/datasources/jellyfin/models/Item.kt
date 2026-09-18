@@ -28,6 +28,7 @@ data class Item(
     @SerialName("ParentIndexNumber") val parentIndexNumber: Int? = null,
     @SerialName("IndexNumber") val indexNumber: Int? = null,
     @SerialName("Genres") val genres: List<String>? = null,
+    @SerialName("GenreItems") val genreItems: List<GenreItem>? = null,
     @SerialName("Type") val type: ItemType? = null,
     @SerialName("UserData") val userData: UserData? = null,
 )

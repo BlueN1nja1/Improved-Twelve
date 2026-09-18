@@ -36,7 +36,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.search.SearchView
@@ -75,9 +74,7 @@ class MainFragment : Fragment(R.layout.fragment_main), SharedPreferences.OnShare
 
     // Views
     private val navigationBarView by getViewProperty<NavigationBarView>(R.id.navigationBarView)
-    private val playRandomSongsExtendedFloatingActionButton by getViewProperty<ExtendedFloatingActionButton>(
-        R.id.playRandomSongsExtendedFloatingActionButton
-    )
+    private val playRandomSongsButton by getViewProperty<MaterialButton>(R.id.playRandomSongsButton)
     private val providerMaterialButton by getViewProperty<MaterialButton>(R.id.providerMaterialButton)
     private val searchLinearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.searchLinearProgressIndicator)
     private val searchNoElementsLinearLayout by getViewProperty<LinearLayout>(R.id.searchNoElementsLinearLayout)
@@ -358,7 +355,7 @@ class MainFragment : Fragment(R.layout.fragment_main), SharedPreferences.OnShare
             startActivity(intent)
         }
 
-        playRandomSongsExtendedFloatingActionButton.setOnClickListener {
+        playRandomSongsButton.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.playAllAudios().onError {
                     Snackbar.make(

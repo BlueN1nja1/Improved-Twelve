@@ -110,7 +110,7 @@ class JellyfinDataSource(
                     .build()
             )
             .setTitle(name)
-            .setArtistUri(getArtistUri(id.toString()))
+            .setArtistUri(artistItems?.firstOrNull()?.id?.let { getArtistUri(it.toString()) })
             .setArtistName(artists?.firstOrNull())
             .setYear(productionYear)
             .build()
@@ -130,13 +130,13 @@ class JellyfinDataSource(
             .setTitle(name)
             .setType(Audio.Type.MUSIC)
             .setDurationMs(runTimeTicks?.let { it / 10000 })
-            .setArtistUri(getArtistUri(artistItems?.firstOrNull()?.id.toString()))
+            .setArtistUri(artistItems?.firstOrNull()?.id?.let { getArtistUri(it.toString()) })
             .setArtistName(artists?.firstOrNull())
-            .setAlbumUri(getAlbumUri(albumId.toString()))
+            .setAlbumUri(albumId?.let { getAlbumUri(it.toString()) })
             .setAlbumTitle(album)
             .setDiscNumber(parentIndexNumber)
             .setTrackNumber(indexNumber)
-            .setGenreUri(getGenreUri(id.toString()))
+            .setGenreUri(genreItems?.firstOrNull()?.id?.let { getGenreUri(it.toString()) })
             .setGenreName(genres?.firstOrNull())
             .setYear(productionYear)
             .setIsFavorite(userData?.isFavorite == true)
@@ -471,6 +471,9 @@ class JellyfinDataSource(
                 }.getOrNull().orEmpty(),
                 appearsInAlbum = listOf(),
                 appearsInPlaylist = listOf(),
+                audios = client.getArtistAudios(id).map { queryResult ->
+                    queryResult.items.map { it.toMediaItemAudio() }
+                }.getOrNull().orEmpty(),
             )
         }
     }

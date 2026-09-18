@@ -43,6 +43,7 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.updatePadding
+import org.lineageos.twelve.ext.updateValueAndRange
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 import org.lineageos.twelve.models.OutputConfiguration
@@ -471,11 +472,11 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                         val newValueTo = durationMs.toFloat().takeIf { it > 0 } ?: 1f
                         val newValue = currentPositionMs.toFloat()
 
-                        progressSlider.valueTo = newValueTo
-
-                        if (!isProgressSliderDragging) {
-                            progressSlider.value = newValue
-                        }
+                        progressSlider.updateValueAndRange(
+                            value = newValue,
+                            valueTo = newValueTo,
+                            isDragging = isProgressSliderDragging,
+                        )
 
                         currentTimestampTextView.text =
                             TimestampFormatter.formatTimestampMillis(currentPositionMs)

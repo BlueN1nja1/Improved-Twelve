@@ -26,6 +26,7 @@ import com.google.android.material.slider.Slider
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.ext.loadThumbnail
+import org.lineageos.twelve.ext.updateValueAndRange
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.RepeatMode
@@ -202,11 +203,11 @@ class ViewActivity : AppCompatActivity(R.layout.activity_view) {
                         val newValueTo = durationMs.toFloat().takeIf { it > 0 } ?: 1f
                         val newValue = currentPositionMs.toFloat()
 
-                        progressSlider.valueTo = newValueTo
-
-                        if (!isProgressSliderDragging) {
-                            progressSlider.value = newValue
-                        }
+                        progressSlider.updateValueAndRange(
+                            value = newValue,
+                            valueTo = newValueTo,
+                            isDragging = isProgressSliderDragging,
+                        )
 
                         currentTimestampTextView.text =
                             TimestampFormatter.formatTimestampMillis(currentPositionMs)

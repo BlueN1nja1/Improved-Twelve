@@ -63,16 +63,16 @@ class MediaItemViewModel(application: Application) : TwelveViewModel(application
     ) { uri, mediaType ->
         when (mediaType) {
             MediaType.ALBUM -> mediaRepository.album(uri)
-            MediaType.ARTIST -> mediaRepository.artist(uri).mapLatest {
-                it.map { album -> album.first to listOf() }
+            MediaType.ARTIST -> mediaRepository.artist(uri).mapLatest { result ->
+                result.map { it.first to it.second.audios }
             }
 
-            MediaType.AUDIO -> mediaRepository.audio(uri).mapLatest {
-                it.map { audio -> audio to listOf(audio) }
+            MediaType.AUDIO -> mediaRepository.audio(uri).mapLatest { result ->
+                result.map { it to listOf(it) }
             }
 
-            MediaType.GENRE -> mediaRepository.genre(uri).mapLatest {
-                it.map { genre -> genre.first to listOf() }
+            MediaType.GENRE -> mediaRepository.genre(uri).mapLatest { result ->
+                result.map { it.first to it.second.audios }
             }
 
             MediaType.PLAYLIST -> mediaRepository.playlist(uri)

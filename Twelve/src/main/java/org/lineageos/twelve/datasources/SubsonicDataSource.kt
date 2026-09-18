@@ -513,6 +513,7 @@ class SubsonicDataSource(
                 albums = artistWithAlbumsID3.album.map { it.toMediaItem() },
                 appearsInAlbum = listOf(),
                 appearsInPlaylist = listOf(),
+                audios = listOf(),
             )
         }
     }

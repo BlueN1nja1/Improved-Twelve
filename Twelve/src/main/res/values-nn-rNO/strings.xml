@@ -128,7 +128,7 @@
     <string name="delete_provider_action">Slett</string>
     <string name="delete_provider_confirmation">Er du sikker på at du vil sletta denne kjelda?</string>
     <string name="provider_name">Namn</string>
-    <string name="provider_name_error">Skriv inn eit namn</string>
+    <string name="provider_name_error">Skriv eit namn</string>
     <string name="provider_type">Kjeldetype</string>
     <string name="provider_type_error">Vel ein kjeldetype</string>
     <string name="argument_validation_error_title">Feil</string>
@@ -211,6 +211,7 @@
     <string name="jellyfin_operating_system">Operativsystem</string>
     <string name="ampache_server">Tenar</string>
     <string name="ampache_version">Versjon</string>
+    <string name="ampache_compatible">Kompatibel</string>
     <string name="playlist_name">Namn</string>
     <string name="provider">Kjelde</string>
     <string name="create_playlist_error_empty_name">Du må oppgje eit namn</string>

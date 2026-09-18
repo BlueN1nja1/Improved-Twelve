@@ -24,6 +24,7 @@ import kotlinx.coroutines.guava.future
 class CoilBitmapLoader(
     private val context: Context,
     private val scope: CoroutineScope,
+    private val limit: Int,
 ) : BitmapLoader {
     override fun supportsMimeType(mimeType: String) = true
 
@@ -34,6 +35,7 @@ class CoilBitmapLoader(
     private fun getImage(data: Any?) = scope.future(Dispatchers.IO) {
         val imageRequest = ImageRequest.Builder(context)
             .data(data)
+            .size(limit)
             .allowHardware(false)
             .build()
 

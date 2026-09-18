@@ -608,13 +608,32 @@ class MediaStoreDataSource(
                         )
                     }
                 ).mapEachRowToAlbum(volumeName)
-            }
-        ) { artists, albums, appearsInAlbum ->
+            },
+            contentResolver.queryFlow(
+                getAudiosUri(volumeName),
+                audiosProjection,
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.AudioColumns.ARTIST_ID eq Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(
+                            ContentUris.parseId(artistUri).toString(),
+                        )
+                    )
+                }
+            ).mapEachRowToAudio(volumeName)
+        ) { artists, albums, appearsInAlbum, audios ->
             artists.firstOrNull()?.let { artist ->
                 val artistWorks = ArtistWorks(
                     albums,
                     appearsInAlbum,
                     listOf(),
+                    audios
                 )
 
                 Result.Success(artist to artistWorks)

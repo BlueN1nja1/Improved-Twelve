@@ -5,8 +5,8 @@
 -->
 <resources>
     <string name="app_name">Musiqi</string>
-    <string name="app_permissions_toast">İstifadəçi tərəfindən verilməyən icazələr.</string>
-    <string name="visualizer_permissions_toast">Vizuallaşdırıcı üçün səs yazma icazəsi tələb olunur.</string>
+    <string name="app_permissions_toast">İstifadəçi izinləri vermədi.</string>
+    <string name="visualizer_permissions_toast">Vizuallaşdırıcı üçün səs yazma izni tələb olunur.</string>
     <string name="main_fragment_section_activity">Fəaliyyət</string>
     <string name="main_fragment_section_search">Axtar</string>
     <string name="main_fragment_section_library">Kitabxana</string>
@@ -46,8 +46,8 @@
     <string name="action_play">Oxut</string>
     <string name="audio_play_next">Növbətini oxut</string>
     <string name="audio_add_to_queue">Növbəyə əlavə et</string>
-    <string name="audio_remove_from_playlist">Pleylistdən sil</string>
-    <string name="audio_add_or_remove_from_playlists">Pleylistə əlavə et və ya pleylistdən sil</string>
+    <string name="audio_remove_from_playlist">Pleylistdən çıxart</string>
+    <string name="audio_add_or_remove_from_playlists">Pleylistə əlavə et və ya pleylistdən çıxart</string>
     <string name="open_album">Albomu aç</string>
     <string name="open_artist">Sənətçini aç</string>
     <string name="open_genre">Janrı aç</string>
@@ -142,7 +142,7 @@
     <string name="enable_offload">Offload-ı fəallaşdır</string>
     <string name="enable_offload_summary">Səs oxutma üçün offload audio path-ını istifadə edin. Bunu sıradan çıxartmaq, enerji istifadəsini artıra bilər, ancaq səs oxutma və ya son proseslə bağlı problemlə üzləşdikdə faydalı ola bilər</string>
     <string name="enable_float_output">32-bit üzən nöqtə çıxacı fəallaşdır</string>
-    <string name="enable_float_output_summary">Səs keyfiyyətindən faydalanmaq mümkün olduqda 32-bit PCM üzən nöqtə çıxacını istifadə et. Sürət və ucalıq kontrolları kimi səs effektləri bu rejimdə çalışmağı dayandıracaq. Bu seçimi açmaq, tətbiqin yenidən başladılmasını tələb edir</string>
+    <string name="enable_float_output_summary">Səs keyfiyyətindən faydalanmaq mümkün olduqda 32-bit PCM üzən nöqtə çıxacını istifadə et. Sürət və ucalıq kontrolları kimi səs effektləri bu rejimdə çalışmağı dayandıracaq. Bu seçənəyi açmaq, tətbiqin yenidən başladılmasını tələb edir</string>
     <string name="stop_playback_on_task_removed">Tətbiq sonunculardan silindikdə oxutmanı dayandır</string>
     <string name="stop_playback_on_task_removed_summary">Tətbiq son tətbiqlərdən təmizləndikdə oxutmanı dayandır</string>
     <string name="skip_silence">Səssizliyi ötür</string>
@@ -153,12 +153,12 @@
     <string name="reset_local_stats_confirm_positive">Sıfırla</string>
     <string name="reset_local_stats_success">Lokal media oxutma statistikaları sıfırlandı</string>
     <string name="rescan_media_store">MediaStore databaza təkrar skanını tətiklə</string>
-    <string name="rescan_media_store_confirm_title">MediaStore databazasını təkrar skan et</string>
-    <string name="rescan_media_store_confirm_message">MediaStore databazasının təkrar skanını tətikləmək istəyirsiniz? Bu, əskik daxili media elementlərini düzəldə bilər</string>
+    <string name="rescan_media_store_confirm_title">MediaStore veri bazasını təkrar skan et</string>
+    <string name="rescan_media_store_confirm_message">MediaStore veri bazasının təkrar skanını tətikləmək istəyirsiniz? Bu, əskik daxili media elementlərini düzəldə bilər</string>
     <string name="rescan_media_store_confirm_positive">Təkrar skan et</string>
     <string name="rescan_media_store_started">MediaStore təkrar skanı başladıldı</string>
     <string name="split_local_devices">Daxili cihazları ayır</string>
-    <string name="split_local_devices_summary">Fəal olduqda, daxili anbar və xarici cihazlar (SD kart, USB cihazları və s.) fərqli provayderlər altında görünəcək</string>
+    <string name="split_local_devices_summary">Fəal olduqda, daxili depo və xarici cihazlar (SD kart, USB cihazları və s.) fərqli provayderlər altında görünəcək</string>
     <string name="now_playing_widget_description">İndi oxudulur</string>
     <string name="now_playing_widget_dummy_title">Başlıq</string>
     <string name="now_playing_widget_dummy_artist">Sənətçi</string>
@@ -187,8 +187,8 @@
     <string name="content_description_thumbnail">Kiçik şəkil</string>
     <string name="play_all">Hamısını oxut</string>
     <string name="shuffle_play">Qarışıq oxut</string>
-    <string name="library_item_no_permissions">İcazə yoxdur</string>
-    <string name="library_item_no_permissions_description">Tətbiqin lazımi icazələri yoxdur</string>
+    <string name="library_item_no_permissions">İzin yoxdur</string>
+    <string name="library_item_no_permissions_description">Tətbiqin gərəkli izinləri yoxdur</string>
     <string name="library_item_albums">Albomlar</string>
     <string name="library_item_artists">Sənətçilər</string>
     <string name="library_item_genres">Janrlar</string>
@@ -225,5 +225,5 @@
     <string name="follow_current_lyrics_line">Hazırkı sətri izlə</string>
     <string name="favorites_playlist">Sevimlilər</string>
     <string name="add_to_favorites">Sevimlilərə əlavə et</string>
-    <string name="remove_from_favorites">Sevimlilərdən sil</string>
+    <string name="remove_from_favorites">Sevimlilərdən çıxart</string>
 </resources>

@@ -27,7 +27,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
@@ -67,14 +67,10 @@ class AlbumFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_album) {
     private val infoNestedScrollView by getViewProperty<NestedScrollView?>(R.id.infoNestedScrollView)
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)
     private val noElementsNestedScrollView by getViewProperty<NestedScrollView>(R.id.noElementsNestedScrollView)
-    private val playAllExtendedFloatingActionButton by getViewProperty<ExtendedFloatingActionButton>(
-        R.id.playAllExtendedFloatingActionButton
-    )
+    private val playAllButton by getViewProperty<MaterialButton>(R.id.playAllButton)
     private val playButtonsLinearLayout by getViewProperty<LinearLayout>(R.id.playButtonsLinearLayout)
     private val recyclerView by getViewProperty<RecyclerView>(R.id.recyclerView)
-    private val shufflePlayExtendedFloatingActionButton by getViewProperty<ExtendedFloatingActionButton>(
-        R.id.shufflePlayExtendedFloatingActionButton
-    )
+    private val shufflePlayButton by getViewProperty<MaterialButton>(R.id.shufflePlayButton)
     private val thumbnailImageView by getViewProperty<ImageView>(R.id.thumbnailImageView)
     private val toolbar by getViewProperty<MaterialToolbar>(R.id.toolbar)
     private val tracksInfoTextView by getViewProperty<TextView>(R.id.tracksInfoTextView)
@@ -226,9 +222,7 @@ class AlbumFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_album) {
             windowInsets
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(
-            playButtonsLinearLayout
-        ) { v, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(playButtonsLinearLayout) { v, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             v.updatePadding(
@@ -259,11 +253,11 @@ class AlbumFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_album) {
 
         recyclerView.adapter = adapter
 
-        playAllExtendedFloatingActionButton.setOnClickListener {
+        playAllButton.setOnClickListener {
             viewModel.playAlbum()
         }
 
-        shufflePlayExtendedFloatingActionButton.setOnClickListener {
+        shufflePlayButton.setOnClickListener {
             viewModel.shufflePlayAlbum()
         }
 
@@ -379,13 +373,11 @@ class AlbumFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_album) {
                     noElementsNestedScrollView.isVisible = isEmpty
                     when (isEmpty) {
                         true -> {
-                            playAllExtendedFloatingActionButton.hide()
-                            shufflePlayExtendedFloatingActionButton.hide()
+                            playButtonsLinearLayout.isVisible = false
                         }
 
                         false -> {
-                            playAllExtendedFloatingActionButton.show()
-                            shufflePlayExtendedFloatingActionButton.show()
+                            playButtonsLinearLayout.isVisible = true
                         }
                     }
                 }

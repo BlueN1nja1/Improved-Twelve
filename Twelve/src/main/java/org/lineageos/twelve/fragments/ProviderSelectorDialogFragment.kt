@@ -74,7 +74,7 @@ class ProviderSelectorDialogFragment : MaterialDialogFragment(
             view.headlineText = provider.name
             view.setSupportingText(provider.type.nameStringResId)
 
-            view.isActivated = isCurrent
+            view.isSelected = isCurrent
         }
     }
 

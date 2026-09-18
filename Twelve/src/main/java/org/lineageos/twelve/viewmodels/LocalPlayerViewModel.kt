@@ -47,7 +47,6 @@ import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.services.TwelveRenderersFactory
-import kotlin.ranges.coerceAtMost
 
 /**
  * A view model useful to playback stuff locally (not in the playback service).
@@ -175,9 +174,8 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
                 while (true) {
                     val duration = exoPlayer.duration.takeIf { it != C.TIME_UNSET }
                     val currentPosition =
-                        exoPlayer.currentPosition.takeIf { exoPlayer.duration != C.TIME_UNSET }
-                            ?.coerceAtMost(exoPlayer.duration)
-                    emit(duration to duration?.let { currentPosition })
+                        exoPlayer.currentPosition.takeIf { duration != null }
+                    emit(duration to currentPosition)
                     delay(200)
                 }
             }

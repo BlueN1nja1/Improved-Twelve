@@ -535,6 +535,7 @@ class AmpacheDataSource(
                 albums = artist.albums.orEmpty().map { it.toMediaItem() },
                 appearsInAlbum = listOf(),
                 appearsInPlaylist = listOf(),
+                audios = artist.songs.orEmpty().map { it.toMediaItem() },
             )
         }
     }
