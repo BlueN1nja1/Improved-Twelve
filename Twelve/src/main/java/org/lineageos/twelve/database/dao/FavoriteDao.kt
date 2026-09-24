@@ -9,11 +9,9 @@ import android.net.Uri
 import androidx.room.Dao
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import java.time.Instant
 
 @Dao
-@Suppress("FunctionName")
 interface FavoriteDao {
     /**
      * Get all the favorite items.
@@ -31,34 +29,12 @@ interface FavoriteDao {
      */
     @Query(
         """
-            SELECT audio_uri
+            SELECT COUNT(*) > 0
             FROM favorite
             WHERE audio_uri = :audioUri
         """
     )
-    suspend fun _contains(audioUri: Uri): Uri?
-
-    /**
-     * Check whether this item is a favorite.
-     */
-    suspend fun contains(audioUri: Uri): Boolean = _contains(audioUri) != null
-
-    /**
-     * Check whether this item is a favorite.
-     */
-    @Query(
-        """
-            SELECT audio_uri
-            FROM favorite
-            WHERE audio_uri = :audioUri
-        """
-    )
-    fun _containsFlow(audioUri: Uri): Flow<Uri?>
-
-    /**
-     * Check whether this item is a favorite.
-     */
-    fun containsFlow(audioUri: Uri): Flow<Boolean> = _containsFlow(audioUri).map { it != null }
+    fun containsFlow(audioUri: Uri): Flow<Boolean>
 
     /**
      * Add this item to favorites.

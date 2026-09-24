@@ -59,7 +59,7 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
         /* Local Media Stats */
         LocalMediaStats::class,
     ],
-    version = 9,
+    version = 10,
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
         AutoMigration(from = 2, to = 3),
@@ -69,6 +69,7 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
         AutoMigration(from = 6, to = 7, spec = TwelveDatabase.Companion.MigrationSpec6To7::class),
         // 7 to 8 is done manually
         AutoMigration(from = 8, to = 9),
+        AutoMigration(from = 9, to = 10, spec = TwelveDatabase.Companion.MigrationSpec9To10::class),
     ],
 )
 @TypeConverters(
@@ -226,6 +227,15 @@ abstract class TwelveDatabase : RoomDatabase() {
                 // Item: End
             }
         }
+
+        @RenameColumn.Entries(
+            RenameColumn(
+                tableName = "LocalMediaStats",
+                fromColumnName = "audio_uri",
+                toColumnName = "uri"
+            )
+        )
+        class MigrationSpec9To10 : AutoMigrationSpec
 
         fun get(context: Context) = Room.databaseBuilder(
             context.applicationContext,

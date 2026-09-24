@@ -21,7 +21,6 @@ import androidx.room.PrimaryKey
  */
 @Entity(
     indices = [
-        Index(value = ["playlist_index"], unique = true),
         Index(value = ["resumption_playlist_id"]),
     ],
     foreignKeys = [

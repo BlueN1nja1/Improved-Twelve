@@ -110,7 +110,8 @@ class PostRequestInterface<D, T>(
 class DeleteRequestInterface<T>(
     private val path: List<String>,
     override val type: KType,
-    private val queryParameters: List<Pair<String, Any?>> = emptyList()
+    private val queryParameters: List<Pair<String, Any?>> = emptyList(),
+    private val emptyResponse: () -> T,
 ) : BaseRequest(), ApiRequestInterface<T> {
     override suspend fun execute(api: Api): MethodResult<T> {
         val url = api.buildUrl(path, queryParameters)
@@ -118,7 +119,7 @@ class DeleteRequestInterface<T>(
             .url(url)
             .delete()
             .build()
-        return api.executeRequest(request, type)
+        return api.executeRequest(request, type, emptyResponse)
     }
 }
 
@@ -230,8 +231,9 @@ object ApiRequest {
 
     inline fun <reified T> delete(
         path: List<String>,
-        queryParameters: List<Pair<String, Any?>> = emptyList()
-    ) = DeleteRequestInterface<T>(path, typeOf<T>(), queryParameters)
+        queryParameters: List<Pair<String, Any?>> = emptyList(),
+        noinline emptyResponse: () -> T = { Unit as T },
+    ) = DeleteRequestInterface(path, typeOf<T>(), queryParameters, emptyResponse)
 }
 
 sealed interface ApiError {

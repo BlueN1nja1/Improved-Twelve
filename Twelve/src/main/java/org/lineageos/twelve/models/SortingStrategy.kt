@@ -34,4 +34,9 @@ enum class SortingStrategy {
      * Sort by user's play count, least to most.
      */
     PLAY_COUNT,
+
+    /**
+     * Random.
+     */
+    RANDOM,
 }

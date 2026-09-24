@@ -1,0 +1,385 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 10,
+    "identityHash": "bd424017b28b995dfcb64d5955ea3572",
+    "entities": [
+      {
+        "tableName": "Favorite",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`audio_uri` TEXT NOT NULL, `added_at` TEXT NOT NULL, PRIMARY KEY(`audio_uri`))",
+        "fields": [
+          {
+            "fieldPath": "audioUri",
+            "columnName": "audio_uri",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addedAt",
+            "columnName": "added_at",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "audio_uri"
+          ]
+        }
+      },
+      {
+        "tableName": "Playlist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playlist_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `created_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "playlist_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "playlist_id"
+          ]
+        }
+      },
+      {
+        "tableName": "PlaylistItemCrossRef",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playlist_id` INTEGER NOT NULL, `audio_uri` TEXT NOT NULL DEFAULT '', `last_modified` INTEGER NOT NULL, PRIMARY KEY(`playlist_id`, `audio_uri`), FOREIGN KEY(`playlist_id`) REFERENCES `Playlist`(`playlist_id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "playlistId",
+            "columnName": "playlist_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "audioUri",
+            "columnName": "audio_uri",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "''"
+          },
+          {
+            "fieldPath": "lastModified",
+            "columnName": "last_modified",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "playlist_id",
+            "audio_uri"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_PlaylistItemCrossRef_audio_uri",
+            "unique": false,
+            "columnNames": [
+              "audio_uri"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_PlaylistItemCrossRef_audio_uri` ON `${TABLE_NAME}` (`audio_uri`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Playlist",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "playlist_id"
+            ],
+            "referencedColumns": [
+              "playlist_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "ResumptionItem",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playlist_index` INTEGER NOT NULL, `resumption_playlist_id` INTEGER NOT NULL, `media_id` TEXT NOT NULL, PRIMARY KEY(`playlist_index`), FOREIGN KEY(`resumption_playlist_id`) REFERENCES `ResumptionPlaylist`(`resumption_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "playlistIndex",
+            "columnName": "playlist_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resumptionPlaylistId",
+            "columnName": "resumption_playlist_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaId",
+            "columnName": "media_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "playlist_index"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_ResumptionItem_resumption_playlist_id",
+            "unique": false,
+            "columnNames": [
+              "resumption_playlist_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_ResumptionItem_resumption_playlist_id` ON `${TABLE_NAME}` (`resumption_playlist_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "ResumptionPlaylist",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "resumption_playlist_id"
+            ],
+            "referencedColumns": [
+              "resumption_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "ResumptionPlaylist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`resumption_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `start_index` INTEGER NOT NULL, `start_position_ms` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "resumption_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startIndex",
+            "columnName": "start_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startPositionMs",
+            "columnName": "start_position_ms",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "resumption_id"
+          ]
+        }
+      },
+      {
+        "tableName": "AmpacheProvider",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ampache_provider_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `url` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `token` TEXT, `token_expiration` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ampache_provider_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "username",
+            "columnName": "username",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "token",
+            "columnName": "token",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "tokenExpiration",
+            "columnName": "token_expiration",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "ampache_provider_id"
+          ]
+        }
+      },
+      {
+        "tableName": "JellyfinProvider",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`jellyfin_provider_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `url` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `device_identifier` TEXT NOT NULL, `token` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "jellyfin_provider_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "username",
+            "columnName": "username",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceIdentifier",
+            "columnName": "device_identifier",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "token",
+            "columnName": "token",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "jellyfin_provider_id"
+          ]
+        }
+      },
+      {
+        "tableName": "SubsonicProvider",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`subsonic_provider_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `url` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `use_legacy_authentication` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "subsonic_provider_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "username",
+            "columnName": "username",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "useLegacyAuthentication",
+            "columnName": "use_legacy_authentication",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "subsonic_provider_id"
+          ]
+        }
+      },
+      {
+        "tableName": "LocalMediaStats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uri` TEXT NOT NULL, `play_count` INTEGER NOT NULL DEFAULT 1, PRIMARY KEY(`uri`))",
+        "fields": [
+          {
+            "fieldPath": "uri",
+            "columnName": "uri",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playCount",
+            "columnName": "play_count",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uri"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bd424017b28b995dfcb64d5955ea3572')"
+    ]
+  }
+}

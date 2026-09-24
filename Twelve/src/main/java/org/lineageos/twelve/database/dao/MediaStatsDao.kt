@@ -8,6 +8,7 @@ package org.lineageos.twelve.database.dao
 import android.net.Uri
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 import org.lineageos.twelve.database.entities.LocalMediaStats
 
@@ -17,7 +18,7 @@ interface MediaStatsDao {
     /**
      * Delete an entry.
      */
-    @Query("DELETE FROM LocalMediaStats WHERE audio_uri IN (:mediaUris)")
+    @Query("DELETE FROM LocalMediaStats WHERE uri IN (:mediaUris)")
     suspend fun delete(mediaUris: List<Uri>)
 
     /**
@@ -31,17 +32,24 @@ interface MediaStatsDao {
      */
     @Query(
         """
-            INSERT OR REPLACE
-            INTO LocalMediaStats (audio_uri, play_count)
-            VALUES (
-                :audioUri,
-                COALESCE(
-                    (SELECT play_count + 1 FROM LocalMediaStats WHERE audio_uri = :audioUri), 1
-                )
-            )
+            INSERT
+            INTO LocalMediaStats (uri, play_count)
+            VALUES (:uri, 1)
+            ON CONFLICT(uri) DO UPDATE SET
+                play_count = play_count + 1
         """
     )
-    suspend fun increasePlayCount(audioUri: Uri)
+    suspend fun increasePlayCount(uri: Uri)
+
+    /**
+     * Increase the play count of multiple entries by 1.
+     */
+    @Transaction
+    suspend fun increasePlayCount(mediaUris: List<Uri>) {
+        mediaUris.distinct().forEach {
+            increasePlayCount(it)
+        }
+    }
 
     /**
      * Fetch all entries.
@@ -50,8 +58,22 @@ interface MediaStatsDao {
     suspend fun getAll(): List<LocalMediaStats>
 
     /**
+     * Fetch all entries as a flow.
+     */
+    @Query("SELECT * FROM LocalMediaStats")
+    fun getAllFlow(): Flow<List<LocalMediaStats>>
+
+    /**
      * Fetch all entries sorted by play count.
      */
-    @Query("SELECT * FROM LocalMediaStats ORDER BY play_count DESC LIMIT :limit")
-    fun getAllByPlayCount(limit: Int): Flow<List<LocalMediaStats>>
+    @Query(
+        """
+            SELECT *
+            FROM LocalMediaStats
+            WHERE uri LIKE :uriPattern
+            ORDER BY play_count DESC
+            LIMIT :limit
+        """
+    )
+    fun getAllByPlayCount(uriPattern: String, limit: Int): Flow<List<LocalMediaStats>>
 }
