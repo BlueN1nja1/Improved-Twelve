@@ -273,7 +273,7 @@ class MediaRepositoryTree(
     /**
      * Given a query, search for media items.
      */
-    suspend fun search(query: String) = repository.search("%${query}%").toOneShotResult().map {
+    suspend fun search(query: String) = repository.search(query).toOneShotResult().map {
         it.toMedia3MediaItem(context.resources)
     }
 

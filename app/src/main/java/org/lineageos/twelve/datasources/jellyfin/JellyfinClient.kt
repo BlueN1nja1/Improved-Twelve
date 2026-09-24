@@ -17,6 +17,8 @@ import org.lineageos.twelve.datasources.jellyfin.models.PlaylistItems
 import org.lineageos.twelve.datasources.jellyfin.models.QueryResult
 import org.lineageos.twelve.datasources.jellyfin.models.SystemInfo
 import org.lineageos.twelve.datasources.jellyfin.models.UpdatePlaylist
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.models.SortingRule
 import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.utils.Api
@@ -253,16 +255,31 @@ class JellyfinClient(
         ),
     ).execute(api).mapToError()
 
-    suspend fun removeItemFromPlaylist(id: UUID, audioId: UUID) = ApiRequest.delete<Unit>(
-        listOf(
-            "Playlists",
-            id.toString(),
-            "Items",
-        ),
-        queryParameters = listOf(
-            "EntryIds" to audioId,
-        ),
-    ).execute(api).mapToError()
+    suspend fun removeItemFromPlaylist(id: UUID, audioId: UUID): Result<Unit, Error> {
+        // Resolve playlist item ID from the track
+        val entryIds = when (val tracks = getPlaylistTracks(id)) {
+            is Result.Success -> tracks.data.items
+                .filter { it.id == audioId }
+                .mapNotNull { it.playlistItemId }
+
+            is Result.Failure -> return Result.Failure(tracks.error, tracks.throwable)
+        }
+
+        if (entryIds.isEmpty()) {
+            return Result.Failure(Error.NOT_FOUND)
+        }
+
+        return ApiRequest.delete<Unit>(
+            listOf(
+                "Playlists",
+                id.toString(),
+                "Items",
+            ),
+            queryParameters = listOf(
+                "EntryIds" to entryIds.joinToString(","),
+            ),
+        ).execute(api).mapToError()
+    }
 
     suspend fun getSystemInfo() = ApiRequest.get<SystemInfo>(
         listOf(
@@ -385,6 +402,7 @@ class JellyfinClient(
                 SortingStrategy.MODIFICATION_DATE -> "DateLastContentAdded"
                 SortingStrategy.NAME -> "Name"
                 SortingStrategy.PLAY_COUNT -> "PlayCount"
+                SortingStrategy.RANDOM -> "Random"
             }
         )
 

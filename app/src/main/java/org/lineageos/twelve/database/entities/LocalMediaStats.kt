@@ -8,21 +8,16 @@ package org.lineageos.twelve.database.entities
 import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
 
 /**
  * Database entity for local media stats
  *
- * @param audioUri The [Uri] of the audio
+ * @param uri The [Uri] of the audio
  * @param playCount The number of times the media has been played
  */
-@Entity(
-    indices = [
-        Index(value = ["audio_uri"], unique = true),
-    ],
-)
+@Entity
 data class LocalMediaStats(
-    @PrimaryKey @ColumnInfo(name = "audio_uri") val audioUri: Uri,
+    @PrimaryKey @ColumnInfo(name = "uri") val uri: Uri,
     @ColumnInfo(name = "play_count", defaultValue = "1") val playCount: Long,
 )
