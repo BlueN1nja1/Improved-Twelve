@@ -34,10 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/play_all"
-            android:textColor="?attr/colorOnTertiaryContainer"
-            app:backgroundTint="?attr/colorTertiaryContainer"
+            android:textColor="@color/colorTertiaryContainer"
+            app:backgroundTint="@color/colorTertiary"
             app:icon="@drawable/ic_play_arrow"
-            app:iconTint="?attr/colorOnTertiaryContainer"
+            app:iconTint="@color/colorTertiaryContainer"
             app:materialSizeOverlay="@style/SizeOverlay.Material3Expressive.Button.Medium" />
 
     </com.google.android.material.button.MaterialButtonGroup>
